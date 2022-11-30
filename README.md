@@ -15,7 +15,7 @@
 <img src="https://github.com/igurianova/hse-sql-project/raw/main/assets/public.png" width="700">
 
 
-## Зпросы
+## Запросы
 ### 1) Топ популярных тэгов
 ```sql
 SELECT t.id, name, count(*) as amount
