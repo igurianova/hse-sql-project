@@ -408,3 +408,455 @@ LIMIT 10;
 </tr>
 </tbody></table>
 </details>
+
+### 6) Пользователь, который оставил больше всего отзывов?
+```sql
+SELECT u.id, name, count(br.id) as count
+FROM book_review br
+         INNER JOIN users u on u.id = br.user_id
+GROUP BY u.id
+ORDER BY count DESC
+LIMIT 1;
+```
+<details>
+  <summary>
+    Результат
+  </summary>
+  <table class="table table-bordered table-hover table-condensed">
+<thead><tr><th title="Field #1">id</th>
+<th title="Field #2">name</th>
+<th title="Field #3">count</th>
+</tr></thead>
+<tbody><tr>
+<td align="right">51</td>
+<td>Chad Bernardy</td>
+<td align="right">7</td>
+</tr>
+</tbody></table>
+</details>
+
+### 7) Найти всех пользователей, которые зарегистрировались за последние 3 месяца
+```sql
+SELECT *
+FROM users u
+WHERE u.reg_time + interval '3 month' >= CURRENT_DATE;
+```
+<details>
+  <summary>
+    Результат
+  </summary>
+  <table class="table table-bordered table-hover table-condensed">
+<thead><tr><th title="Field #1">id</th>
+<th title="Field #2">name</th>
+<th title="Field #3">balance</th>
+<th title="Field #4">contact</th>
+<th title="Field #5">reg_time</th>
+</tr></thead>
+<tbody><tr>
+<td align="right">2</td>
+<td>Yorgos De la Perrelle</td>
+<td align="right">3282</td>
+<td align="right">83967777657</td>
+<td>2022-10-04 22:53:21.000000</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>Justina Bardill</td>
+<td align="right">2312</td>
+<td align="right">82113035488</td>
+<td>2022-09-22 15:20:57.000000</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>Meggi Byforth</td>
+<td align="right">1400</td>
+<td align="right">81518989263</td>
+<td>2022-09-02 02:03:55.000000</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>Ced Layland</td>
+<td align="right">3576</td>
+<td align="right">85418891228</td>
+<td>2022-11-11 13:59:04.000000</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>Fernande Algeo</td>
+<td align="right">3184</td>
+<td align="right">89087415992</td>
+<td>2022-10-23 11:23:33.000000</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>Simone Churchley</td>
+<td align="right">3344</td>
+<td align="right">87206485361</td>
+<td>2022-10-09 19:43:14.000000</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>Ainslee Soloway</td>
+<td align="right">1946</td>
+<td align="right">86888214710</td>
+<td>2022-09-30 18:58:45.000000</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>Thurston Martusov</td>
+<td align="right">3535</td>
+<td align="right">87453672252</td>
+<td>2022-11-05 19:32:07.000000</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>Foster Gipps</td>
+<td align="right">2120</td>
+<td align="right">88186290463</td>
+<td>2022-10-31 18:21:32.000000</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td>Faulkner Fortye</td>
+<td align="right">3134</td>
+<td align="right">85954490855</td>
+<td>2022-10-11 05:03:48.000000</td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td>Gawain Gueny</td>
+<td align="right">3806</td>
+<td align="right">81191278117</td>
+<td>2022-10-07 15:08:48.000000</td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td>Humfrid Nund</td>
+<td align="right">3149</td>
+<td align="right">89342908778</td>
+<td>2022-10-04 11:24:03.000000</td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td>Guglielma Pietraszek</td>
+<td align="right">2297</td>
+<td align="right">81199666063</td>
+<td>2022-10-22 20:16:17.000000</td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td>Vanna Buckleigh</td>
+<td align="right">3305</td>
+<td align="right">83769403954</td>
+<td>2022-09-18 03:15:29.000000</td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td>Trey Keeri</td>
+<td align="right">4078</td>
+<td align="right">81998413425</td>
+<td>2022-11-21 13:13:27.000000</td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td>Janaya Wagerfield</td>
+<td align="right">1874</td>
+<td align="right">83712158259</td>
+<td>2022-09-25 14:11:22.000000</td>
+</tr>
+<tr>
+<td align="right">36</td>
+<td>Paulie Sorro</td>
+<td align="right">2625</td>
+<td align="right">84061994673</td>
+<td>2022-09-04 14:52:51.000000</td>
+</tr>
+<tr>
+<td align="right">38</td>
+<td>Camellia Ingram</td>
+<td align="right">2437</td>
+<td align="right">89655007583</td>
+<td>2022-09-06 10:48:05.000000</td>
+</tr>
+<tr>
+<td align="right">42</td>
+<td>Delmore Featherstone</td>
+<td align="right">2051</td>
+<td align="right">89876265709</td>
+<td>2022-10-09 20:59:51.000000</td>
+</tr>
+<tr>
+<td align="right">43</td>
+<td>Zelig Hrihorovich</td>
+<td align="right">4588</td>
+<td align="right">83179611483</td>
+<td>2022-10-02 14:05:22.000000</td>
+</tr>
+<tr>
+<td align="right">49</td>
+<td>Randi Bullion</td>
+<td align="right">1900</td>
+<td align="right">83775168530</td>
+<td>2022-11-03 11:16:36.000000</td>
+</tr>
+<tr>
+<td align="right">50</td>
+<td>Pru Bispham</td>
+<td align="right">4057</td>
+<td align="right">83343110038</td>
+<td>2022-09-29 08:46:02.000000</td>
+</tr>
+<tr>
+<td align="right">55</td>
+<td>Octavius O&#39;Cahey</td>
+<td align="right">2271</td>
+<td align="right">84091118007</td>
+<td>2022-09-28 10:01:07.000000</td>
+</tr>
+<tr>
+<td align="right">57</td>
+<td>Jonis Tant</td>
+<td align="right">3857</td>
+<td align="right">82326667186</td>
+<td>2022-10-06 03:55:06.000000</td>
+</tr>
+<tr>
+<td align="right">59</td>
+<td>Jamey Berka</td>
+<td align="right">3802</td>
+<td align="right">81721217587</td>
+<td>2022-10-14 08:14:01.000000</td>
+</tr>
+<tr>
+<td align="right">61</td>
+<td>Loria Sicha</td>
+<td align="right">2948</td>
+<td align="right">83291958892</td>
+<td>2022-10-22 07:55:52.000000</td>
+</tr>
+<tr>
+<td align="right">63</td>
+<td>Maye Houselee</td>
+<td align="right">2373</td>
+<td align="right">83723362432</td>
+<td>2022-09-02 14:18:58.000000</td>
+</tr>
+<tr>
+<td align="right">65</td>
+<td>Rochelle Orridge</td>
+<td align="right">1594</td>
+<td align="right">86101737300</td>
+<td>2022-11-13 04:33:29.000000</td>
+</tr>
+<tr>
+<td align="right">70</td>
+<td>Hope Tilio</td>
+<td align="right">2388</td>
+<td align="right">85586349713</td>
+<td>2022-09-03 11:32:00.000000</td>
+</tr>
+<tr>
+<td align="right">73</td>
+<td>Claudia Routhorn</td>
+<td align="right">3452</td>
+<td align="right">85876175603</td>
+<td>2022-11-03 11:16:26.000000</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>Xavier Garken</td>
+<td align="right">4744</td>
+<td align="right">88098036056</td>
+<td>2022-09-25 20:52:24.000000</td>
+</tr>
+<tr>
+<td align="right">77</td>
+<td>Maryjane Finicj</td>
+<td align="right">2458</td>
+<td align="right">88519666023</td>
+<td>2022-10-08 11:31:26.000000</td>
+</tr>
+<tr>
+<td align="right">78</td>
+<td>Claudetta Gilder</td>
+<td align="right">4071</td>
+<td align="right">86146351021</td>
+<td>2022-09-06 16:01:19.000000</td>
+</tr>
+<tr>
+<td align="right">84</td>
+<td>Barry Camosso</td>
+<td align="right">1230</td>
+<td align="right">88781295615</td>
+<td>2022-11-11 23:40:53.000000</td>
+</tr>
+<tr>
+<td align="right">87</td>
+<td>Gwenette Ruprich</td>
+<td align="right">4366</td>
+<td align="right">82612811919</td>
+<td>2022-09-30 04:50:59.000000</td>
+</tr>
+<tr>
+<td align="right">88</td>
+<td>Orville Fairrie</td>
+<td align="right">2828</td>
+<td align="right">85261204915</td>
+<td>2022-09-11 14:23:32.000000</td>
+</tr>
+<tr>
+<td align="right">90</td>
+<td>Heywood Kuhle</td>
+<td align="right">3013</td>
+<td align="right">88656284421</td>
+<td>2022-09-19 09:10:38.000000</td>
+</tr>
+<tr>
+<td align="right">98</td>
+<td>Garfield Shepley</td>
+<td align="right">2578</td>
+<td align="right">81516789661</td>
+<td>2022-10-16 06:23:32.000000</td>
+</tr>
+</tbody></table>
+</details>
+
+### 8) В какой день января оставили больше всего отзывов?
+```sql
+SELECT DATE_PART('day', br.time) as day, count(br.id) as count
+FROM book_review br
+WHERE DATE_PART('month', br.time) = '1'
+GROUP BY day
+ORDER BY count DESC
+LIMIT 1;
+```
+<details>
+  <summary>
+    Результат
+  </summary>
+  <table class="table table-bordered table-hover table-condensed">
+<thead><tr><th title="Field #1">day</th>
+<th title="Field #2">count</th>
+</tr></thead>
+<tbody><tr>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+</tbody></table>
+</details>
+
+### 9) Топ 7 бестселлеров за текущий год?
+```sql
+SELECT b.id,
+       b.title,
+       b.is_bestseller,
+       count(b2u.user_id) as buy_count
+FROM books b
+         INNER JOIN book2user b2u on b.id = b2u.book_id
+WHERE b.is_bestseller = 1
+  AND DATE_PART('year', b2u.time) = DATE_PART('year', CURRENT_DATE)
+GROUP BY b.id
+ORDER BY buy_count DESC
+LIMIT 7;
+```
+<details>
+  <summary>
+    Результат
+  </summary>
+  <table class="table table-bordered table-hover table-condensed">
+<thead><tr><th title="Field #1">id</th>
+<th title="Field #2">title</th>
+<th title="Field #3">is_bestseller</th>
+<th title="Field #4">buy_count</th>
+</tr></thead>
+<tbody><tr>
+<td align="right">115</td>
+<td>Before Night Falls</td>
+<td>1</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="right">126</td>
+<td>Magnificent Warriors (Zhong hua zhan shi)</td>
+<td>1</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="right">91</td>
+<td>Igby Goes Down</td>
+<td>1</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>Strangers on a Train</td>
+<td>1</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="right">86</td>
+<td>American Dreamz</td>
+<td>1</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="right">55</td>
+<td>Albuquerque</td>
+<td>1</td>
+<td align="right">4</td>
+</tr>
+<tr>
+<td align="right">147</td>
+<td>Bless Me, Ultima</td>
+<td>1</td>
+<td align="right">4</td>
+</tr>
+</tbody></table>
+</details>
+
+### 10) Топ 5 пользователей, которые потратили больше всего денег при покупке книг
+```sql
+SELECT u.id, u.name, sum(b.price) as total_amount
+FROM book2user b2u
+         INNER JOIN users u on u.id = b2u.user_id
+         INNER JOIN books b on b.id = b2u.book_id
+GROUP BY u.id
+ORDER BY total_amount DESC
+LIMIT 5;
+```
+<details>
+  <summary>
+    Результат
+  </summary>
+  <table class="table table-bordered table-hover table-condensed">
+<thead><tr><th title="Field #1">id</th>
+<th title="Field #2">name</th>
+<th title="Field #3">total_amount</th>
+</tr></thead>
+<tbody><tr>
+<td align="right">84</td>
+<td>Barry Camosso</td>
+<td align="right">24243</td>
+</tr>
+<tr>
+<td align="right">66</td>
+<td>Gilburt Holliar</td>
+<td align="right">23541</td>
+</tr>
+<tr>
+<td align="right">90</td>
+<td>Heywood Kuhle</td>
+<td align="right">21320</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>Ainslee Soloway</td>
+<td align="right">18514</td>
+</tr>
+<tr>
+<td align="right">41</td>
+<td>Violante Highton</td>
+<td align="right">15930</td>
+</tr>
+</tbody></table>
+</details>
